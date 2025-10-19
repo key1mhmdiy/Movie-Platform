@@ -49,7 +49,11 @@ def get_movies():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# ... (بقیه کد بدون تغییر) ...
+
 if __name__ == '__main__':
     init_db()
-    print("🚀 سرور API در حال اجراست: http://localhost:5000/api/movies")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # استفاده از PORT محیطی که Render تنظیم می‌کنه
+    port = int(os.environ.get("PORT", 5000))
+    print(f"🚀 سرور در حال اجراست: http://0.0.0.0:{port}")
+    app.run(debug=False, host='0.0.0.0', port=port)  # debug=False برای محیط تولید        
